@@ -141,3 +141,5 @@ alias config="/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME"
 # kubectl tmp auth
 export USE_GKE_GCLOUD_AUTH_PLUGIN=True
 
+export PATH=$PATH:~/.cargo/bin/
+
