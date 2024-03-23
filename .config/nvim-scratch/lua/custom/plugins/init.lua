@@ -1,17 +1,4 @@
 return {
-  {
-    'nvim-neo-tree/neo-tree.nvim',
-    branch = 'v3.x',
-    dependencies = {
-      'nvim-lua/plenary.nvim',
-      'nvim-tree/nvim-web-devicons', -- not strictly required, but recommended
-      'MunifTanjim/nui.nvim',
-      -- "3rd/image.nvim", -- Optional image support in preview window: See `# Preview Mode` for more information
-    },
-    config = function()
-      vim.keymap.set('n', '<leader>e', '<Cmd>Neotree toggle<CR>')
-    end,
-  },
   { 'catppuccin/nvim', name = 'catppuccin', priority = 1000 },
   {
     'kristijanhusak/vim-dadbod-ui',
@@ -28,8 +15,28 @@ return {
     init = function()
       -- Your DBUI configuration
       vim.g.db_ui_use_nerd_fonts = 1
-      vim.keymap.set('n', '<leader>Do', '<Cmd>DBUIToggle<CR>')
+      vim.keymap.set('n', '<leader>Do', '<Cmd>DBUIToggle<CR>', { desc = 'Go to DB Tool' })
       vim.g.vim_dadbod_completion_mark = ''
     end,
+  },
+  {
+    'Wansmer/treesj',
+    keys = { '<leader>tm', '<leader>tj', '<leader>ts' },
+    dependencies = { 'nvim-treesitter/nvim-treesitter' },
+    config = function()
+      require('treesj').setup {--[[ your config ]]
+      }
+    end,
+  },
+  {
+    'folke/todo-comments.nvim',
+    event = 'VimEnter',
+    dependencies = { 'nvim-lua/plenary.nvim' },
+    opts = {
+      signs = false,
+      keywords = {
+        OPTIONS = { icon = 'x', color = 'hint' },
+      },
+    },
   },
 }
