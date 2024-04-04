@@ -125,7 +125,7 @@ fi
 
 export JAVA_HOME=/Library/Java/JavaVirtualMachines/temurin-17.jdk/Contents/Home
 # Krew - kubectl plugin manager
-export PATH="${PATH}:${HOME}/.krew/bin"
+export PATH="${PATH}:${HOME}/.krew/bin:/opt/homebrew/opt/lua@5.3/bin"
 
 alias vim=nvim
 
@@ -136,7 +136,6 @@ alias ta="tmux attach"
 alias gs="git status"
 alias deploy="$HOME/dev/dev-tools/deploy-it/deploy-it.sh"
 alias config="/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME"
-
 
 # kubectl tmp auth
 export USE_GKE_GCLOUD_AUTH_PLUGIN=True
