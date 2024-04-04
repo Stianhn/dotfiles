@@ -9,5 +9,22 @@ return {
   },
   config = function()
     vim.keymap.set('n', '<leader>e', '<Cmd>Neotree toggle<CR>', { desc = 'File Explorer' })
+    require('neo-tree').setup {
+      window = {
+        mappings = {
+          ['o'] = 'open',
+          -- Unbinding these is necesarry to prevent a delay when using o
+          -- TODO: reseach what the keybindings bellow does.
+          --
+          ['oc'] = 'noop',
+          ['od'] = 'noop',
+          ['og'] = 'noop',
+          ['om'] = 'noop',
+          ['on'] = 'noop',
+          ['os'] = 'noop',
+          ['ot'] = 'noop',
+        },
+      },
+    }
   end,
 }
