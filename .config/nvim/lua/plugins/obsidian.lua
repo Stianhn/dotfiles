@@ -23,7 +23,25 @@ return {
         path = '~/Library/Mobile Documents/iCloud~md~obsidian/Documents/MyVault',
       },
     },
-
-    -- see below for full list of options 👇
+    mappings = {
+      ['gf'] = {
+        action = function()
+          return require('obsidian').util.gf_passthrough()
+        end,
+        opts = { noremap = false, expr = true, buffer = true },
+      },
+      ['<leader>ch'] = {
+        action = function()
+          return require('obsidian').util.toggle_checkbox()
+        end,
+        opts = { buffer = true },
+      },
+      ['<cr>'] = {
+        action = function()
+          return require('obsidian').util.smart_action()
+        end,
+        opts = { buffer = true, expr = true },
+      },
+    },
   },
 }
