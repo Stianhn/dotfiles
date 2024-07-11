@@ -16,7 +16,7 @@ return {
       { 'folke/neodev.nvim', opts = {} },
     },
     config = function()
-      vim.lsp.set_log_level 'debug'
+      -- vim.lsp.set_log_level 'debug'
 
       -- Decorate floating windows
       vim.lsp.handlers['textDocument/hover'] = vim.lsp.with(vim.lsp.handlers.hover, { border = 'rounded' })
@@ -62,7 +62,11 @@ return {
           local map = function(keys, func, desc)
             vim.keymap.set('n', keys, func, { buffer = event.buf, desc = 'LSP: ' .. desc })
           end
+          local bufopts = { noremap = true, silent = true, buffer = bufnr }
 
+          vim.keymap.set('n', '<leader>li', vim.diagnostic.open_float, bufopts)
+          vim.keymap.set('n', ']g', vim.diagnostic.goto_next)
+          vim.keymap.set('n', '[g', vim.diagnostic.goto_prev)
           -- Jump to the definition of the word under your cursor.
           --  This is where a variable was first declared, or where a function is defined, etc.
           --  To jump back, press <C-t>.
@@ -151,20 +155,20 @@ return {
         --    https://github.com/pmizio/typescript-tools.nvim
         --
         -- But for many setups, the LSP (`tsserver`) will work just fine
-        tsserver = {},
-        kotlin_language_server = {
-          root_dir = function()
-            return vim.fn.getcwd()
-          end,
-          settings = {
-            kotlin = { compiler = { jvm = { target = '19' } } },
-            hints = {
-              typeHints = true,
-              parameterHints = true,
-              chainedHints = true,
-            },
-          },
-        },
+        -- kotlin_language_server = {
+        --   root_dir = function()
+        --     return vim.fn.getcwd()
+        --   end,
+        --   settings = {
+        --     kotlin = { compiler = { jvm = { target = '19' } } },
+        --     hints = {
+        --       typeHints = true,
+        --       parameterHints = true,
+        --       chainedHints = true,
+        --     },
+        --   },
+        -- },
+        eslint = {},
         lua_ls = {
           -- cmd = {...},
           -- filetypes { ...},
@@ -181,7 +185,7 @@ return {
         },
       }
 
-      -- require 'lsp.local-kotlin'
+      require 'lsp.local-kotlin'
       -- Ensure the servers and tools above are installed
       --  To check the current status of installed tools and/or manually install
       --  other tools, you can run
@@ -196,8 +200,10 @@ return {
       vim.list_extend(ensure_installed, {
         'stylua', -- Used to format lua code
       })
-      require('mason-tool-installer').setup { ensure_installed = ensure_installed }
+      require('mason-tool-installer').setup { ensure_installed = ensure_installed, automatic_installation = false }
       require('lspconfig.ui.windows').default_options.border = 'single'
+
+      local blocked_servers = { 'kotlin_language_server' }
 
       require('mason-lspconfig').setup {
         handlers = {
@@ -207,8 +213,30 @@ return {
             -- by the server configuration above. Useful when disabling
             -- certain features of an LSP (for example, turning off formatting for tsserver)
             server.capabilities = vim.tbl_deep_extend('force', {}, capabilities, server.capabilities or {})
-            require('lspconfig')[server_name].setup(server)
+            if not vim.tbl_contains(blocked_servers, server) then
+              require('lspconfig')[server_name].setup(server)
+            end
           end,
+        },
+      }
+    end,
+  },
+  {
+    'pmizio/typescript-tools.nvim',
+    dependencies = { 'nvim-lua/plenary.nvim', 'neovim/nvim-lspconfig' },
+    opts = {},
+    config = function()
+      require('typescript-tools').setup {
+        on_attach = function(client)
+          client.server_capabilities.documentFormattingProvider = false
+          client.server_capabilities.documentRangeFormattingProvider = false
+        end,
+        settings = {
+          tsserver_max_memory = 8092,
+          separate_diagnostic_server = false,
+          tsserver_plugins = {
+            '@styled/typescript-styled-plugin',
+          },
         },
       }
     end,
