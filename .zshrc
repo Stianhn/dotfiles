@@ -8,7 +8,7 @@ export ZSH="$HOME/.oh-my-zsh"
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-ZSH_THEME="robbyrussell"
+ZSH_THEME="nicoulaj"
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -74,7 +74,7 @@ export ZVM_VI_ESCAPE_BINDKEY=jj
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
-  git 
+  git
   zsh-vi-mode
 )
 
@@ -136,6 +136,7 @@ alias ta="tmux attach"
 alias gs="git status"
 alias deploy="$HOME/dev/dev-tools/deploy-it/deploy-it.sh"
 alias config="/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME"
+
 
 # kubectl tmp auth
 export USE_GKE_GCLOUD_AUTH_PLUGIN=True
