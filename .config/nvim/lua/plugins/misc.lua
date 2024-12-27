@@ -62,16 +62,15 @@ return {
     'folke/which-key.nvim',
     event = 'VimEnter',
     config = function()
-      require('which-key').setup()
+      local wk = require 'which-key'
 
-      -- Document existing key chains
-      require('which-key').register {
-        ['<leader>c'] = { name = '[C]ode', _ = 'which_key_ignore' },
-        ['<leader>d'] = { name = '[D]ocument', _ = 'which_key_ignore' },
-        ['<leader>r'] = { name = '[R]ename', _ = 'which_key_ignore' },
-        ['<leader>s'] = { name = '[S]earch', _ = 'which_key_ignore' },
-        ['<leader>w'] = { name = '[W]orkspace', _ = 'which_key_ignore' },
+      wk.add {
+        { '<leader>c', group = '[C]ode' },
+        { '<leader>s', group = '[S]earch' },
+        { '<leader>cf', '<cmd>Telescope find_files<cr>', desc = 'Find File', mode = 'n' },
       }
+
+      wk.setup()
     end,
   },
   {
