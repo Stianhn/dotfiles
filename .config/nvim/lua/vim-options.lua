@@ -24,3 +24,4 @@ vim.opt.cursorline = true
 vim.opt.scrolloff = 10
 vim.opt.hlsearch = true
 vim.opt.tabstop = 4
+vim.opt.shiftwidth = 2

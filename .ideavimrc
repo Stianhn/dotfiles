@@ -2,3 +2,5 @@ inoremap jk <Esc>
 
 set number
 set relativenumber
+
+nmap ,c :action GotoClass<CR>
