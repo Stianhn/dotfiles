@@ -38,3 +38,15 @@ set fish_vi_force_cursor 1
 function fish_prompt
   echo " "
 end
+
+function reboot-to-windows
+    set WINDOWS_TITLE (sudo grep -i "^menuentry 'Windows" /boot/grub/grub.cfg | head -n 1 | cut -d"'" -f2)
+    sudo grub-reboot $WINDOWS_TITLE
+    sudo reboot
+end
+
+if type -q tmux
+    if not test -n "$TMUX"
+        tmux attach-session -t default; or tmux new-session -s default
+    end
+end
