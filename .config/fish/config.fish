@@ -20,6 +20,7 @@ end
 # paths
 fish_add_path -m ~/.local/bin
 fish_add_path /usr/local/go/bin
+fish_add_path /opt/gradle/gradle-8.12.1/bin
 
 # alias
 
