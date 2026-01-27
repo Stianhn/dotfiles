@@ -1,0 +1,6 @@
+blacklist = [
+  "(?i)avahi",
+  "(?i)bvnc",
+  "(?i)java-openjdk",
+  "(?i)bssh"
+]
