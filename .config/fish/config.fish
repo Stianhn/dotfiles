@@ -1,12 +1,12 @@
 if status is-interactive
     # Commands to run in interactive sessions can go here
     # I'm trying to grow a neckbeard
-  # fish_vi_key_bindings
-  # Set the cursor shapes for the different vi modes.
-  set fish_cursor_default     block      blink
-  set fish_cursor_insert      line       blink
-  set fish_cursor_replace_one underscore blink
-  set fish_cursor_visual      block
+    # fish_vi_key_bindings
+    # Set the cursor shapes for the different vi modes.
+    set fish_cursor_default block blink
+    set fish_cursor_insert line blink
+    set fish_cursor_replace_one underscore blink
+    set fish_cursor_visual block
 end
 
 # pnpm
@@ -15,7 +15,6 @@ if not string match -q -- $PNPM_HOME $PATH
   set -gx PATH "$PNPM_HOME" $PATH
 end
 # pnpm end
-
 
 # paths
 fish_add_path -m ~/.local/bin
@@ -31,13 +30,13 @@ alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
 fish_vi_key_bindings
 
 function fish_user_key_bindings
-  bind -M insert -m default jj backward-char force-repaint
+    bind -M insert -m default jj backward-char force-repaint
 end
 
 set fish_vi_force_cursor 1
 
 function fish_prompt
-  echo " "
+    echo " "
 end
 
 function reboot-to-windows
@@ -51,3 +50,4 @@ if type -q tmux
         tmux attach-session -t default; or tmux new-session -s default
     end
 end
+/usr/bin/mise activate fish | source
