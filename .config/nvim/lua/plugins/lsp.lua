@@ -165,8 +165,6 @@ return {
         --     },
         --   },
         -- },
-        css_variables = {},
-        eslint = {},
         lua_ls = {
           -- cmd = {...},
           -- filetypes { ...},
