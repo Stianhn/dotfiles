@@ -51,3 +51,6 @@ if type -q tmux
     end
 end
 /usr/bin/mise activate fish | source
+
+# SafetyWing CLI
+export PATH="$HOME/.sw/bin:$PATH"
