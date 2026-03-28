@@ -30,7 +30,10 @@ return {
         end
       end)
 
-      vim.keymap.set('n', '<leader>gp', ':Gitsigns preview_hunk<CR>', {})
+      vim.keymap.set('n', '<leader>gn', ':Gitsigns next_hunk<CR>', { desc = '[G]it [N]ext hunk' })
+      vim.keymap.set('n', '<leader>gp', ':Gitsigns prev_hunk<CR>', { desc = '[G]it [P]revious hunk' })
+      vim.keymap.set('n', '<leader>gs', ':Gitsigns preview_hunk<CR>', { desc = '[G]it [S]how hunk preview' })
+      vim.keymap.set('n', '<leader>gb', ':Gitsigns blame_line<CR>', { desc = '[G]it [B]lame line' })
     end,
   },
 }
