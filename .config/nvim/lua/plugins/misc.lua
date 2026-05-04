@@ -31,15 +31,6 @@ return {
     opts = {},
   },
   {
-    'Wansmer/treesj',
-    keys = { '<leader>tm', '<leader>tj', '<leader>ts' },
-    dependencies = { 'nvim-treesitter/nvim-treesitter' },
-    config = function()
-      require('treesj').setup {--[[ your config ]]
-      }
-    end,
-  },
-  {
     'folke/todo-comments.nvim',
     event = 'VimEnter',
     dependencies = { 'nvim-lua/plenary.nvim' },
@@ -56,8 +47,6 @@ return {
       require('neoscroll').setup {}
     end,
   },
-  'tpope/vim-sleuth',
-  { 'numToStr/Comment.nvim', opts = {} },
   {
     'folke/which-key.nvim',
     event = 'VimEnter',
