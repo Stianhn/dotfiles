@@ -9,6 +9,13 @@ if status is-interactive
     set fish_cursor_visual block
 end
 
+if status is-interactive
+    # Set NeoVim as the default text editors
+    set -gx EDITOR nvim
+    set -gx VISUAL nvim
+end
+
+
 # pnpm
 set -gx PNPM_HOME "/home/tafsen/.local/share/pnpm"
 if not string match -q -- $PNPM_HOME $PATH
@@ -54,3 +61,6 @@ end
 
 # SafetyWing CLI
 export PATH="$HOME/.sw/bin:$PATH"
+
+# Pi
+fish_add_path "/home/tafsen/.local/share/mise/installs/node/24.11.1/bin"
